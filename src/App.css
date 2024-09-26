@@ -1,38 +1,100 @@
-.App {
-  text-align: center;
+body {
+  font-family: "Open Sans", sans-serif;
+  overflow-x: hidden;
+  background-color: white;
 }
-
-.App-logo {
-  height: 40vmin;
+.cursor {
+  width: 12px;
+  height: 12px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #686868;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
   pointer-events: none;
+  z-index: 12;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.img-landing {
+  animation: up-and-down 5s linear infinite;
+}
+
+.img-landing::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #8a8a8a;
+  top: 20px;
+  left: 20px;
+  border-radius: 160px 0 160px 0;
+}
+.zara {
+  background-image: url("../public/assets/andrey-zvyagintsev-EQj1ZMpq_VM-unsplash 1.jpg");
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.drop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  z-index: 1;
+}
+.drop::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #111;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes up-and-down {
+  0%,
+  100% {
+    top: 0;
+  }
+  50% {
+    top: -50px;
   }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.box::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(255 255 255 / 20%);
+  width: 0;
+  height: 0;
+  opacity: 0;
+  z-index: 2;
   }
-  to {
-    transform: rotate(360deg);
-  }
+  .box:hover::before {
+  animation: flashing 0.7s;
+  -webkit-animation: flashing 0.7s;
 }
+  .box:hover img {
+  transform: rotate(5deg) scale(1.1);
+  }
+@keyframes flashing {
+  0%,
+  40% {
+  opacity: 1;
+  }
+  100% {
+  opacity: 0;
+  width: 200%;
+  height: 200%;
+  }
+  }
