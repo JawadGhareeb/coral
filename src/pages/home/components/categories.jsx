@@ -29,7 +29,6 @@ export default function Categories() {
       });
     }
   }, [isLoading, categories]);
-  if (isLoading) return <Loading />;
 
   return (
     <div className="bg-white py-[4vw] w-full px-[8vw]" ref={category}>
