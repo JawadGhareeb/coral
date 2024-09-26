@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import GetBrands from "../../../hooks/brands";
 import BASE_URL from "../../../constant/domain";
+import Loading from "../../../components/loading";
 
 export default function Brand() {
   const settings = {
@@ -42,7 +43,7 @@ export default function Brand() {
   };
   const { data: brands, isLoading } = GetBrands();
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading />;
   return (
     <div className="bg-white px-[8vw] py-[4vw]">
       <Slider {...settings}>

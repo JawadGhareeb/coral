@@ -3,6 +3,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CardCategories from "../../../components/card-categories";
 import GetCategories from "../../../hooks/categories";
 import gsap from "gsap";
+import Loading from "../../../components/loading";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Categories() {
@@ -28,25 +29,29 @@ export default function Categories() {
       });
     }
   }, [isLoading, categories]);
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading />;
 
   return (
     <div className="bg-white py-[4vw] w-full px-[8vw]" ref={category}>
       <h3 className="text-black font-[600] text-[32px] max-sm:text-[24px]">
         Categories
       </h3>
-      <div className="flex justify-between flex-wrap items-center mt-[18px] max-xsm:justify-center">
-        {categories.data.map((category) => {
-          return (
-            <CardCategories
-              key={category.id}
-              src={category.img}
-              alt={category.txt}
-              namecategory={category.arabic}
-            />
-          );
-        })}
-      </div>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className="flex justify-between flex-wrap items-center mt-[18px] max-xsm:justify-center">
+          {categories.data.map((category) => {
+            return (
+              <CardCategories
+                key={category.id}
+                src={category.img}
+                alt={category.txt}
+                namecategory={category.arabic}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
